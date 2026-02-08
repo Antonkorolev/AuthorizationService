@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendService", "src\Backe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendService.Contracts", "src\BackendService.Contracts\BackendService.Contracts.csproj", "{70A06EA9-4E29-455E-966F-1A44D4B33C09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{D5FA666A-5303-4CB5-96DF-19CF14391BB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{70A06EA9-4E29-455E-966F-1A44D4B33C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70A06EA9-4E29-455E-966F-1A44D4B33C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70A06EA9-4E29-455E-966F-1A44D4B33C09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{47827843-4D89-440E-A642-81D2E20452B3} = {D5FA666A-5303-4CB5-96DF-19CF14391BB7}
+		{70A06EA9-4E29-455E-966F-1A44D4B33C09} = {D5FA666A-5303-4CB5-96DF-19CF14391BB7}
 	EndGlobalSection
 EndGlobal
