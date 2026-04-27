@@ -6,4 +6,6 @@ namespace BackendService.Contracts;
 public interface IAuthorizationService
 {
     Task<ActionAvailableResponse> ActionAvailableAsync(ActionAvailableRequest request);
+
+    Task<GetPermissionsResponse> GetPermissionsAsync(GetPermissionsResponse request);
 }

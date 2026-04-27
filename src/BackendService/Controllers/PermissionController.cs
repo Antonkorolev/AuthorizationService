@@ -14,4 +14,12 @@ public sealed class PermissionController : ControllerBase
     {
         throw new NotImplementedException();
     }
+    
+    [HttpGet("GetPermissions")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<GetPermissionsResponse> GetToken(GetPermissionsRequest request)
+    {
+        throw new NotImplementedException();
+    }
 }

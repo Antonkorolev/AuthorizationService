@@ -2,9 +2,9 @@ namespace BackendService.Contracts.Request;
 
 public sealed class ActionAvailableRequest(string login, string permission, int groupId)
 {
-    public string Login { get; set; } = login;
+    public string Login { get; } = login;
 
-    public string Permission { get; set; } = permission;
+    public string Permission { get; } = permission;
 
-    public int GroupId { get; set; } = groupId;
+    public int GroupId { get; } = groupId;
 }
