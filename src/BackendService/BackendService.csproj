@@ -13,6 +13,13 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BackendService.Contracts\BackendService.Contracts.csproj" />
+      <ProjectReference Include="..\DatabaseContext\DatabaseContext.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="appsettings.Development.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </Content>
     </ItemGroup>
 
 </Project>
