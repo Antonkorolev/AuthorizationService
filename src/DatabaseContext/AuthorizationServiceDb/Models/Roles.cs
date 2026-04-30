@@ -8,5 +8,5 @@ public sealed class Roles
 
     public required string RoleCode { get; set; }
     
-    public required string Description { get; set; }
+    public required string? Description { get; set; }
 }

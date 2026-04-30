@@ -10,5 +10,9 @@ public sealed class PermissionsConfiguration : IEntityTypeConfiguration<Permissi
     {
         builder.ToTable("Permissions", "dbo");
         builder.HasKey(p => p.PermissionId);
+
+        builder.Property(p => p.PermissionName).HasMaxLength(50).IsRequired();
+        builder.Property(p => p.PermissionCode).HasMaxLength(50).IsRequired();
+        builder.Property(p => p.Description).HasMaxLength(256);
     }
 }

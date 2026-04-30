@@ -10,5 +10,7 @@ public sealed class UsersConfiguration : IEntityTypeConfiguration<Users>
     {
         builder.ToTable("Users", "dbo");
         builder.HasKey(u => u.UserId);
+
+        builder.Property(u => u.Login).HasMaxLength(30).IsRequired();
     }
 }
