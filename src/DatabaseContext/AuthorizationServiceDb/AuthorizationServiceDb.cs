@@ -11,7 +11,9 @@ public sealed class AuthorizationServiceDb : DbContext, IAuthorizationServiceDb
     public DbSet<Roles> Roles { get; set; }
     public DbSet<RolePermissions> RolePermissions { get; set; }
     public DbSet<Permissions> Permissions { get; set; }
-    
+    public DbSet<UserRestrictions> UserRestrictions { get; set; }
+    public DbSet<RestrictionType> RestrictionType { get; set; }
+
     public AuthorizationServiceDb(DbContextOptions options) : base(options)
     {
     }
@@ -23,5 +25,7 @@ public sealed class AuthorizationServiceDb : DbContext, IAuthorizationServiceDb
         builder.ApplyConfiguration(new RolesConfiguration());
         builder.ApplyConfiguration(new RolePermissionsConfiguration());
         builder.ApplyConfiguration(new PermissionsConfiguration());
+        builder.ApplyConfiguration(new UserRestrictionsConfiguration());
+        builder.ApplyConfiguration(new RestrictionTypeConfiguration());
     }
 }

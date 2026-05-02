@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{AEBC63
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseContext", "src\DatabaseContext\DatabaseContext.csproj", "{370AB2D6-09F5-41B6-9C8B-8C6E97987C07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendService.BusinessLogic", "src\BackendService.BusinessLogic\BackendService.BusinessLogic.csproj", "{8317B39C-7A28-494E-890C-12BE8316E6B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,10 +30,15 @@ Global
 		{370AB2D6-09F5-41B6-9C8B-8C6E97987C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370AB2D6-09F5-41B6-9C8B-8C6E97987C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{370AB2D6-09F5-41B6-9C8B-8C6E97987C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8317B39C-7A28-494E-890C-12BE8316E6B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8317B39C-7A28-494E-890C-12BE8316E6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8317B39C-7A28-494E-890C-12BE8316E6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8317B39C-7A28-494E-890C-12BE8316E6B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{47827843-4D89-440E-A642-81D2E20452B3} = {D5FA666A-5303-4CB5-96DF-19CF14391BB7}
 		{70A06EA9-4E29-455E-966F-1A44D4B33C09} = {D5FA666A-5303-4CB5-96DF-19CF14391BB7}
 		{370AB2D6-09F5-41B6-9C8B-8C6E97987C07} = {AEBC63A4-2A4B-4DBF-9268-6E217088BCBF}
+		{8317B39C-7A28-494E-890C-12BE8316E6B9} = {D5FA666A-5303-4CB5-96DF-19CF14391BB7}
 	EndGlobalSection
 EndGlobal

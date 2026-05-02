@@ -10,7 +10,7 @@ public sealed class PermissionController : ControllerBase
     [HttpGet("ActionAvailable")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionAvailableResponse> ActionAvailable(ActionAvailableRequest request)
+    public async Task<ActionAvailableResponse> ActionAvailableAsync(ActionAvailableRequest request)
     {
         throw new NotImplementedException();
     }
@@ -18,7 +18,7 @@ public sealed class PermissionController : ControllerBase
     [HttpGet("GetPermissions")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<GetPermissionsResponse> GetToken(GetPermissionsRequest request)
+    public async Task<GetPermissionsResponse> GetPermissionsAsync(GetPermissionsRequest request)
     {
         throw new NotImplementedException();
     }

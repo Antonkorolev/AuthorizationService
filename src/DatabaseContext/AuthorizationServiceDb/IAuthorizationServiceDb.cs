@@ -14,4 +14,8 @@ public interface IAuthorizationServiceDb : IDataContext
     public DbSet<RolePermissions> RolePermissions { get; set; }
     
     public DbSet<Permissions> Permissions { get; set; }
+    
+    public DbSet<UserRestrictions> UserRestrictions { get; set; } 
+    
+    public DbSet<RestrictionType> RestrictionType { get; set; }
 }
