@@ -62,4 +62,28 @@ CREATE TABLE [dbo].[Permissions]
 )
 END
 
+IF OBJECT_ID(N'dbo.UserRestrictions', N'U') IS NULL
+BEGIN
+CREATE TABLE [dbo].[UserRestrictions]
+(
+    [UserRestrictionId] INT             NOT NULL PRIMARY KEY IDENTITY,
+    [UserId]            INT             NOT NULL,
+    [RoleId]            INT             NOT NULL,
+    [PermissionId]      INT             NOT NULL,
+    [RestrictionTypeId] INT             NULL,
+    [RestrictionValue]  VARCHAR(50)     NULL
+)
+END
+
+IF OBJECT_ID(N'dbo.RestrictionType', N'U') IS NULL
+BEGIN
+CREATE TABLE [dbo].[RestrictionType]
+(
+    [RestrictionTypeId]     INT             NOT NULL PRIMARY KEY IDENTITY,
+    [RestrictionTypeName]   VARCHAR(50)     NOT NULL,
+    [RestrictionTypeCode]   VARCHAR(50)     NOT NULL,
+    [Description]           VARCHAR(256)    NULL
+)
+END
+
 GO
