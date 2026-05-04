@@ -17,5 +17,5 @@ public interface IAuthorizationServiceDb : IDataContext
     
     public DbSet<UserRestrictions> UserRestrictions { get; set; } 
     
-    public DbSet<RestrictionType> RestrictionType { get; set; }
+    public DbSet<RestrictionTypes> RestrictionTypes { get; set; }
 }

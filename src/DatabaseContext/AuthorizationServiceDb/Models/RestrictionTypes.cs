@@ -1,6 +1,6 @@
 namespace DatabaseContext.AuthorizationServiceDb.Models;
 
-public sealed class RestrictionType
+public sealed class RestrictionTypes
 {
     public int RestrictionTypeId { get; set; }
     

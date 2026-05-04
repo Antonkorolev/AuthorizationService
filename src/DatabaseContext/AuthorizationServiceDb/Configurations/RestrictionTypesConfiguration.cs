@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseContext.AuthorizationServiceDb.Configurations;
 
-public sealed class RestrictionTypeConfiguration : IEntityTypeConfiguration<RestrictionType>
+public sealed class RestrictionTypesConfiguration : IEntityTypeConfiguration<RestrictionTypes>
 {
-    public void Configure(EntityTypeBuilder<RestrictionType> builder)
+    public void Configure(EntityTypeBuilder<RestrictionTypes> builder)
     {
-        builder.ToTable("RestrictionType", "dbo");
+        builder.ToTable("RestrictionTypes", "dbo");
         builder.HasKey(rt => rt.RestrictionTypeId);
 
         builder.Property(rt => rt.RestrictionTypeCode).HasMaxLength(50).IsRequired();

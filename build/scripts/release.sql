@@ -55,9 +55,9 @@ IF OBJECT_ID(N'dbo.Permissions', N'U') IS NULL
         )
     END
 
-IF OBJECT_ID(N'dbo.RestrictionType', N'U') IS NULL
+IF OBJECT_ID(N'dbo.RestrictionTypes', N'U') IS NULL
     BEGIN
-        CREATE TABLE [dbo].[RestrictionType]
+        CREATE TABLE [dbo].[RestrictionTypes]
         (
             [RestrictionTypeId]     INT             NOT NULL PRIMARY KEY IDENTITY,
             [RestrictionTypeName]   VARCHAR(50)     NOT NULL,
@@ -91,7 +91,7 @@ IF OBJECT_ID(N'dbo.UserRestrictions', N'U') IS NULL
             FOREIGN KEY (UserId) REFERENCES [Users] (UserId),
             FOREIGN KEY (RoleId) REFERENCES [Roles] (RoleId),
             FOREIGN KEY (PermissionId) REFERENCES [Permissions] (PermissionId),
-            FOREIGN KEY (RestrictionTypeId) REFERENCES [RestrictionType] (RestrictionTypeId)
+            FOREIGN KEY (RestrictionTypeId) REFERENCES [RestrictionTypes] (RestrictionTypeId)
         )
     END
 

@@ -17,7 +17,7 @@ public sealed class GetPermissionsOperation(IAuthorizationServiceDb context, ILo
             .Join(context.Permissions, p => p.PermissionId, rp => rp.PermissionId, (rp, p) => new { rp.UserId, rp.RoleId, rp.RoleCode, rp.PermissionId, p.PermissionCode })
             .GroupJoin(context.UserRestrictions, p => new { p.UserId, p.RoleId, p.PermissionId }, ur => new { ur.UserId, ur.RoleId, ur.PermissionId }, (p, ur) => new { p, ur})
             .SelectMany(group => group.ur.DefaultIfEmpty(), (group, ur) => new { group.p.RoleCode, group.p.PermissionCode, ur.RestrictionTypeId, ur.RestrictionValue })
-            .Join(context.RestrictionType, ur => ur.RestrictionTypeId, rt => rt.RestrictionTypeId, (us, rt) => new { us.RoleCode, us.PermissionCode, rt.RestrictionTypeCode, us.RestrictionValue})
+            .Join(context.RestrictionTypes, ur => ur.RestrictionTypeId, rt => rt.RestrictionTypeId, (us, rt) => new { us.RoleCode, us.PermissionCode, rt.RestrictionTypeCode, us.RestrictionValue})
             .ToArrayAsync();
 
         return new GetPermissionsOperationResponse(rolePermissions
