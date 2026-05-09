@@ -8,6 +8,7 @@ var configuration = builder.Configuration;
 builder.Services.AddUserDbContext("AuthorizationServiceDb", configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddOperations();
 
 var app = builder.Build();
 
