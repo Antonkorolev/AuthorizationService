@@ -1,6 +1,6 @@
 namespace BackendService.Contracts.Request;
 
-public sealed class AddPermissionsRequest(string login, RoleInfo[] roleInfos)
+public sealed class DeletePermissionsRequest(string login, RoleInfo[] roleInfos)
 {
     public string Login { get; set; } = login;
 

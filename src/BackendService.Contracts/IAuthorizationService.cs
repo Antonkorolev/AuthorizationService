@@ -8,4 +8,8 @@ public interface IAuthorizationService
     Task<ActionAvailableResponse> ActionAvailableAsync(ActionAvailableRequest request);
 
     Task<GetPermissionsResponse> GetPermissionsAsync(GetPermissionsResponse request);
+
+    Task AddPermissionsAsync(AddPermissionsRequest request);
+
+    Task DeletePermissionsAsync(DeletePermissionsRequest request);
 }

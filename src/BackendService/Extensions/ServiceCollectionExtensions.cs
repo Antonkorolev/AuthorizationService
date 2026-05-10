@@ -1,3 +1,4 @@
+using BackendService.BusinessLogic.Operations.DeletePermissions;
 using BackendService.BusinessLogic.Operations.GetPermissions;
 using DatabaseContext.AuthorizationServiceDb;
 using Microsoft.EntityFrameworkCore;
@@ -8,8 +9,9 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddOperations(this IServiceCollection services)
     {
-        services.AddGetPermissionsOperation();
-
+        services.AddTransient<IGetPermissionsOperation, GetPermissionsOperation>();
+        services.AddTransient<IDeletePermissionsOperation, DeletePermissionsOperation>();
+        
         return services;
     }
 
@@ -23,13 +25,6 @@ public static class ServiceCollectionExtensions
                 options.UseLoggerFactory(sp.GetRequiredService<ILoggerFactory>());
             })
             .AddScoped<IAuthorizationServiceDb>(x => x.GetRequiredService<AuthorizationServiceDb>());
-
-        return services;
-    }
-
-    private static IServiceCollection AddGetPermissionsOperation(this IServiceCollection services)
-    {
-        services.AddTransient<IGetPermissionsOperation, GetPermissionsOperation>();
 
         return services;
     }

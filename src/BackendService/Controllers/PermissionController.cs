@@ -22,4 +22,16 @@ public sealed class PermissionController : ControllerBase
     {
         throw new NotImplementedException();
     }
+
+    [HttpPost("AddPermissions")]
+    public async Task AddPermissionsAsync(AddPermissionsRequest request)
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost("DeletePermissions")]
+    public async Task DeletePermissionsAsync(DeletePermissionsRequest request)
+    {
+        throw new NotImplementedException();
+    }
 }
