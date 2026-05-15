@@ -19,12 +19,12 @@ public static class ServiceCollectionExtensions
     {
         var connectionString = configuration.GetConnectionString(name);
 
-        services.AddDbContext<AuthorizationServiceDb>((sp, options) =>
+        services.AddDbContext<AuthorizationServiceDbContext>((sp, options) =>
             {
                 options.UseSqlServer(connectionString);
                 options.UseLoggerFactory(sp.GetRequiredService<ILoggerFactory>());
             })
-            .AddScoped<IAuthorizationServiceDb>(x => x.GetRequiredService<AuthorizationServiceDb>());
+            .AddScoped<IAuthorizationServiceDbContext>(x => x.GetRequiredService<AuthorizationServiceDbContext>());
 
         return services;
     }

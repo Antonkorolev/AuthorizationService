@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace BackendService.BusinessLogic.Operations.DeletePermissions;
 
-public sealed class DeletePermissionsOperation(IAuthorizationServiceDb context, ILogger<DeletePermissionsOperation> logger) : IDeletePermissionsOperation
+public sealed class DeletePermissionsOperation(IAuthorizationServiceDbContext context, ILogger<DeletePermissionsOperation> logger) : IDeletePermissionsOperation
 {
     public async Task DeletePermissionsAsync(DeletePermissionsOperationRequest request)
     {

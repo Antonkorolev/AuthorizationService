@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseContext.AuthorizationServiceDb;
 
-public sealed class AuthorizationServiceDb : DbContext, IAuthorizationServiceDb
+public sealed class AuthorizationServiceDbContext : DbContext, IAuthorizationServiceDbContext
 {
     public DbSet<Users> User { get; set; }
     public DbSet<UserRoles> UserRoles { get; set; }
@@ -14,7 +14,7 @@ public sealed class AuthorizationServiceDb : DbContext, IAuthorizationServiceDb
     public DbSet<UserRestrictions> UserRestrictions { get; set; }
     public DbSet<RestrictionTypes> RestrictionTypes { get; set; }
 
-    public AuthorizationServiceDb(DbContextOptions options) : base(options)
+    public AuthorizationServiceDbContext(DbContextOptions options) : base(options)
     {
     }
 

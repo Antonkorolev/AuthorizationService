@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseContext.AuthorizationServiceDb;
 
-public interface IAuthorizationServiceDb : IDataContext
+public interface IAuthorizationServiceDbContext : IDataContext
 {
     public DbSet<Users> User { get; set; }
     
