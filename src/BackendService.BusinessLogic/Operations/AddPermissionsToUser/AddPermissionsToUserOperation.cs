@@ -1,12 +1,12 @@
-using BackendService.BusinessLogic.Operations.AddPermissions.Models;
+using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Models;
 using DatabaseContext.AuthorizationServiceDb;
 using DatabaseContext.AuthorizationServiceDb.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace BackendService.BusinessLogic.Operations.AddPermissions;
+namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser;
 
-public sealed class AddPermissionsOperation(IAuthorizationServiceDbContext context, ILogger<AddPermissionsOperation> logger) : IAddPermissionsOperation
+public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext context, ILogger<AddPermissionsToUserOperation> logger) : IAddPermissionsToUserOperation
 {
     public async Task AddPermissionsAsync(AddPermissionsOperationRequest request)
     {

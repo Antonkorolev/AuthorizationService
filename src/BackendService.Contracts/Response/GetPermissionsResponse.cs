@@ -1,6 +1,6 @@
 namespace BackendService.Contracts.Response;
 
-public sealed class GetPermissionsResponse(string[] permissions)
+public sealed class GetPermissionsResponse(IEnumerable<RolePermission> rolePermissions)
 {
-    public string[] Permissions { get; } = permissions;
+    public IEnumerable<RolePermission> RolePermissions { get; } = rolePermissions;
 }

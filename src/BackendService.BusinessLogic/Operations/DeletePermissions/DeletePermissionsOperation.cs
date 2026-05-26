@@ -9,14 +9,21 @@ public sealed class DeletePermissionsOperation(IAuthorizationServiceDbContext co
 {
     public async Task DeletePermissionsAsync(DeletePermissionsOperationRequest request)
     {
-        var user = await context.User.FirstOrDefaultAsync(u => u.Login == request.Login);
+        try
+        {
+            var user = await context.User.FirstOrDefaultAsync(u => u.Login == request.Login);
 
-        if (user == null)
-            return;
+            if (user == null)
+                return;
         
-        context.UserRoles.RemoveRange(context.UserRoles.Where(ur => ur.UserId == user.UserId));
-        context.UserRestrictions.RemoveRange(context.UserRestrictions.Where(ur => ur.UserId == user.UserId));
+            context.UserRoles.RemoveRange(context.UserRoles.Where(ur => ur.UserId == user.UserId));
+            context.UserRestrictions.RemoveRange(context.UserRestrictions.Where(ur => ur.UserId == user.UserId));
 
-        await context.SaveChangesAsync(CancellationToken.None);
+            await context.SaveChangesAsync(CancellationToken.None);
+        }
+        catch (Exception exception)
+        {
+            logger.LogError(exception.Message);
+        }
     }
 }

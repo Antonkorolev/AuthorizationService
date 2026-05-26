@@ -1,11 +1,19 @@
+using BackendService.BusinessLogic.Operations.AddPermissionsToUser;
+using BackendService.BusinessLogic.Operations.DeletePermissions;
+using BackendService.BusinessLogic.Operations.GetPermissions;
+using BackendService.BusinessLogic.Operations.GetPermissions.Models;
 using BackendService.Contracts.Request;
 using BackendService.Contracts.Response;
+using BackendService.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendService.Controllers;
 
 [ApiController]
-public sealed class PermissionController : ControllerBase
+public sealed class PermissionController(
+    IGetPermissionsOperation getPermissionsOperation,
+    IAddPermissionsToUserOperation addPermissionsToUserOperation,
+    IDeletePermissionsOperation deletePermissionsOperation) : ControllerBase
 {
     [HttpGet("ActionAvailable")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -14,24 +22,26 @@ public sealed class PermissionController : ControllerBase
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpGet("GetPermissions")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<GetPermissionsResponse> GetPermissionsAsync(GetPermissionsRequest request)
     {
-        throw new NotImplementedException();
+        var getPermissionsOperationResponse = await getPermissionsOperation.GetAsync(new GetPermissionsOperationRequest(request.Login));
+
+        return getPermissionsOperationResponse.Map();
     }
 
-    [HttpPost("AddPermissions")]
-    public async Task AddPermissionsAsync(AddPermissionsRequest request)
+    [HttpPost("AddPermissionsToUser")]
+    public async Task AddPermissionsAsync(AddPermissionsToUserRequest request)
     {
-        throw new NotImplementedException();
+        await addPermissionsToUserOperation.AddPermissionsAsync(request.Map());
     }
 
     [HttpPost("DeletePermissions")]
     public async Task DeletePermissionsAsync(DeletePermissionsRequest request)
     {
-        throw new NotImplementedException();
+        await deletePermissionsOperation.DeletePermissionsAsync(request.Map());
     }
 }
