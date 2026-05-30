@@ -1,5 +1,5 @@
 using BackendService.BusinessLogic.Operations.AddPermissionsToUser;
-using BackendService.BusinessLogic.Operations.DeletePermissions;
+using BackendService.BusinessLogic.Operations.DeletePermissionsFromUser;
 using BackendService.BusinessLogic.Operations.GetPermissions;
 using BackendService.BusinessLogic.Operations.GetPermissions.Models;
 using BackendService.Contracts.Request;
@@ -13,7 +13,7 @@ namespace BackendService.Controllers;
 public sealed class PermissionController(
     IGetPermissionsOperation getPermissionsOperation,
     IAddPermissionsToUserOperation addPermissionsToUserOperation,
-    IDeletePermissionsOperation deletePermissionsOperation) : ControllerBase
+    IDeletePermissionsFromUserOperation deletePermissionsFromUserOperation) : ControllerBase
 {
     [HttpGet("ActionAvailable")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -36,12 +36,12 @@ public sealed class PermissionController(
     [HttpPost("AddPermissionsToUser")]
     public async Task AddPermissionsAsync(AddPermissionsToUserRequest request)
     {
-        await addPermissionsToUserOperation.AddPermissionsAsync(request.Map());
+        await addPermissionsToUserOperation.AddAsync(request.Map());
     }
 
-    [HttpPost("DeletePermissions")]
-    public async Task DeletePermissionsAsync(DeletePermissionsRequest request)
+    [HttpPost("DeletePermissionsFromUser")]
+    public async Task DeletePermissionsFromUserAsync(DeletePermissionsFromUserRequest fromUserRequest)
     {
-        await deletePermissionsOperation.DeletePermissionsAsync(request.Map());
+        await deletePermissionsFromUserOperation.DeleteAsync(fromUserRequest.Map());
     }
 }

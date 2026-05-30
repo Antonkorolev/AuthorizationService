@@ -9,7 +9,7 @@ public interface IAuthorizationService
 
     Task<GetPermissionsResponse> GetPermissionsAsync(GetPermissionsResponse request);
 
-    Task AddPermissionsAsync(AddPermissionsToUserRequest toUserRequest);
+    Task AddPermissionsToUserAsync(AddPermissionsToUserRequest toUserRequest);
 
-    Task DeletePermissionsAsync(DeletePermissionsRequest request);
+    Task DeletePermissionsFromUserAsync(DeletePermissionsFromUserRequest fromUserRequest);
 }

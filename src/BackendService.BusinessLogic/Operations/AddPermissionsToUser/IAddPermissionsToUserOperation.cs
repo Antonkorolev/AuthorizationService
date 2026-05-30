@@ -4,5 +4,5 @@ namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser;
 
 public interface IAddPermissionsToUserOperation
 {
-    Task AddPermissionsAsync(AddPermissionsOperationRequest request);
+    Task AddAsync(AddPermissionsOperationRequest request);
 }

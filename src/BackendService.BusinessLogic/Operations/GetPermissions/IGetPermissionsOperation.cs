@@ -4,5 +4,5 @@ namespace BackendService.BusinessLogic.Operations.GetPermissions;
 
 public interface IGetPermissionsOperation
 {
-    Task<GetPermissionsOperationResponse> GetAsync(GetPermissionsOperationRequest request);
+    Task<GetPermissionsOperationResponse?> GetAsync(GetPermissionsOperationRequest request);
 }

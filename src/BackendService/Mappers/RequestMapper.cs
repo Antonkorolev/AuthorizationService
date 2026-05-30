@@ -1,18 +1,18 @@
 using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Models;
-using BackendService.BusinessLogic.Operations.DeletePermissions.Models;
+using BackendService.BusinessLogic.Operations.DeletePermissionsFromUser.Models;
 using BackendService.Contracts.Request;
-using RoleInfo = BackendService.BusinessLogic.Operations.DeletePermissions.Models.RoleInfo;
+using RoleInfo = BackendService.BusinessLogic.Operations.DeletePermissionsFromUser.Models.RoleInfo;
 using AddPermissionsToUserRoleInfo = BackendService.BusinessLogic.Operations.AddPermissionsToUser.Models.RoleInfo;
 
 namespace BackendService.Mappers;
 
 public static class RequestMapper
 {
-    public static DeletePermissionsOperationRequest Map(this DeletePermissionsRequest deletePermissionsRequest)
+    public static DeletePermissionsOperationRequest Map(this DeletePermissionsFromUserRequest deletePermissionsFromUserRequest)
     {
-        var roleInfos = deletePermissionsRequest.RoleInfos.Select(ri => new RoleInfo(ri.RoleCode, ri.RestrictionTypeCode, ri.RestrictionValue));
+        var roleInfos = deletePermissionsFromUserRequest.RoleInfos.Select(ri => new RoleInfo(ri.RoleCode, ri.RestrictionTypeCode, ri.RestrictionValue));
             
-        return new DeletePermissionsOperationRequest(deletePermissionsRequest.Login, roleInfos);
+        return new DeletePermissionsOperationRequest(deletePermissionsFromUserRequest.Login, roleInfos);
     }
 
     public static AddPermissionsOperationRequest Map(this AddPermissionsToUserRequest addPermissionsToUserRequest)

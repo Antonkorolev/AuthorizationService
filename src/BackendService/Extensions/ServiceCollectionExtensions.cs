@@ -1,5 +1,5 @@
 using BackendService.BusinessLogic.Operations.AddPermissionsToUser;
-using BackendService.BusinessLogic.Operations.DeletePermissions;
+using BackendService.BusinessLogic.Operations.DeletePermissionsFromUser;
 using BackendService.BusinessLogic.Operations.GetPermissions;
 using DatabaseContext.AuthorizationServiceDb;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +12,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<IAddPermissionsToUserOperation, AddPermissionsToUserOperation>();
         services.AddTransient<IGetPermissionsOperation, GetPermissionsOperation>();
-        services.AddTransient<IDeletePermissionsOperation, DeletePermissionsOperation>();
+        services.AddTransient<IDeletePermissionsFromUserOperation, DeletePermissionsFromUserOperation>();
         
         return services;
     }

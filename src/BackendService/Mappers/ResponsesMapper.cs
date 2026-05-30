@@ -8,7 +8,7 @@ namespace BackendService.Mappers;
 
 public static class ResponsesMapper
 {
-    public static GetPermissionsResponse Map(this GetPermissionsOperationResponse getPermissionsOperationResponse)
+    public static GetPermissionsResponse Map(this GetPermissionsOperationResponse? getPermissionsOperationResponse)
     {
         var rolePermissions = getPermissionsOperationResponse.RolePermissions
             .Select(rp => new RolePermission(rp.RoleCode, rp.Permissions

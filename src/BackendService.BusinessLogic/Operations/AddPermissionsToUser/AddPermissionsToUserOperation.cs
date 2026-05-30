@@ -8,7 +8,7 @@ namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser;
 
 public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext context, ILogger<AddPermissionsToUserOperation> logger) : IAddPermissionsToUserOperation
 {
-    public async Task AddPermissionsAsync(AddPermissionsOperationRequest request)
+    public async Task AddAsync(AddPermissionsOperationRequest request)
     {
         await context.Database.BeginTransactionAsync();
         try
