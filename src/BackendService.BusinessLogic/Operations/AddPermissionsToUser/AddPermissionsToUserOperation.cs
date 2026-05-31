@@ -1,46 +1,43 @@
 using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Models;
+using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.AddUserRoles;
+using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.EnsureUserExistsTask;
 using DatabaseContext.AuthorizationServiceDb;
-using DatabaseContext.AuthorizationServiceDb.Models;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser;
 
-public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext context, ILogger<AddPermissionsToUserOperation> logger) : IAddPermissionsToUserOperation
+public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext context, IEnsureUserExistsTask ensureUserExistsTask, IAddUserRolesTask addUserRolesTask, ILogger<AddPermissionsToUserOperation> logger) : IAddPermissionsToUserOperation
 {
     public async Task AddAsync(AddPermissionsOperationRequest request)
     {
         await context.Database.BeginTransactionAsync();
+        
         try
         {
-            var user = await context.User.FirstOrDefaultAsync(u => u.Login == request.Login);
-
-            if (user is null)
-            {
-                user = new Users { Login = request.Login };
-                await context.User.AddAsync(user);
-                await context.SaveChangesAsync(CancellationToken.None); 
-            }
+            var userId = await ensureUserExistsTask.ExecuteAsync(request.Login);
             
             var roleCodes = request.RoleInfos.Select(ri => ri.RoleCode).ToArray();
-            var roles = await context.Roles.Where(r => roleCodes.Contains(r.RoleCode)).ToArrayAsync();
 
-            foreach (var role in roles)
-            {
-                await context.UserRoles.AddAsync(new UserRoles { UserId = user.UserId, RoleId = role.RoleId });
-            }
+            await addUserRolesTask.AddAsync(userId, roleCodes);
+            
+            // var rolesPermissions = await context.RolePermissions
+            //     .Where(rp => roleIds.Contains(rp.RoleId))
+            //     .Join(context.Permissions, rp => rp.PermissionId, p => p.PermissionId, (rp, p) => new { rp.RoleId, p.PermissionId })
+            //     .ToArrayAsync();
 
-            await context.SaveChangesAsync(CancellationToken.None);
+            // foreach (var rolesPermission in rolesPermissions)
+            // {
+            //     await context.UserRestrictions.AddAsync(new UserRestrictions { UserId = user.UserId });
+            // }
+
+            //await context.SaveChangesAsync(CancellationToken.None);
                 
             await context.Database.CommitTransactionAsync();
         }
-        catch (Exception exception)
-        {
-            logger.LogError(exception.Message);
-        }
-        finally
+        catch (Exception)
         {
             await context.Database.RollbackTransactionAsync();
+            throw;
         }
     }
 }

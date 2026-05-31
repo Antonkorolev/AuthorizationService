@@ -25,7 +25,7 @@ public sealed class AddPermissionsToUserTests
 
         _logger = new Mock<ILogger<AddPermissionsToUserOperation>>();
 
-        _addPermissionsToUserOperation = new AddPermissionsToUserOperation(_context, _logger.Object);
+        //_addPermissionsToUserOperation = new AddPermissionsToUserOperation(_context, _logger.Object);
     }
 
     [TestMethod]
