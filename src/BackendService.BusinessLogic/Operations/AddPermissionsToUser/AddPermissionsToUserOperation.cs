@@ -1,12 +1,13 @@
 using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Models;
-using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.AddUserRoles;
+using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.AddUserRestrictions;
+using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.AddUserRestrictions.Models;
 using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.EnsureUserExistsTask;
 using DatabaseContext.AuthorizationServiceDb;
 using Microsoft.Extensions.Logging;
 
 namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser;
 
-public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext context, IEnsureUserExistsTask ensureUserExistsTask, IAddUserRolesTask addUserRolesTask, ILogger<AddPermissionsToUserOperation> logger) : IAddPermissionsToUserOperation
+public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext context, IEnsureUserExistsTask ensureUserExistsTask, IAddUserRestrictionsTask addUserRestrictionsTask, ILogger<AddPermissionsToUserOperation> logger) : IAddPermissionsToUserOperation
 {
     public async Task AddAsync(AddPermissionsOperationRequest request)
     {
@@ -16,9 +17,9 @@ public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext
         {
             var userId = await ensureUserExistsTask.ExecuteAsync(request.Login);
             
-            var roleCodes = request.RoleInfos.Select(ri => ri.RoleCode).ToArray();
+            var addUserRestrictionsTaskRoleInfos = request.RoleInfos.Select(ri => new AddUserRestrictionsTaskRoleInfo(ri.RoleCode, ri.RestrictionTypeCode, ri.RestrictionValue)).ToArray();
 
-            await addUserRolesTask.AddAsync(userId, roleCodes);
+            await addUserRestrictionsTask.AddAsync(new AddUserRestrictionsTaskRequest(userId, addUserRestrictionsTaskRoleInfos));
             
             // var rolesPermissions = await context.RolePermissions
             //     .Where(rp => roleIds.Contains(rp.RoleId))
