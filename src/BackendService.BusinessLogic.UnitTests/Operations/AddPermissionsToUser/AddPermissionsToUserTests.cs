@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace BackendService.BusinessLogic.UnitTests.Operations;
+namespace BackendService.BusinessLogic.UnitTests.Operations.AddPermissionsToUser;
 
 [TestClass]
 public sealed class AddPermissionsToUserTests

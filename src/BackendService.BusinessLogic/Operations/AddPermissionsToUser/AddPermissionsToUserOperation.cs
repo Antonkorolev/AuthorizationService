@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser;
 
-public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext context, IEnsureUserExistsTask ensureUserExistsTask, IAddUserRestrictionsTask addUserRestrictionsTask, ILogger<AddPermissionsToUserOperation> logger) : IAddPermissionsToUserOperation
+public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext context, IEnsureUserExistsTask ensureUserExistsTask, IAddUserPermissionsTask addUserPermissionsTask, ILogger<AddPermissionsToUserOperation> logger) : IAddPermissionsToUserOperation
 {
     public async Task AddAsync(AddPermissionsOperationRequest request)
     {
@@ -17,9 +17,9 @@ public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext
         {
             var userId = await ensureUserExistsTask.ExecuteAsync(request.Login);
             
-            var addUserRestrictionsTaskRoleInfos = request.RoleInfos.Select(ri => new AddUserRestrictionsTaskRoleInfo(ri.RoleCode, ri.RestrictionTypeCode, ri.RestrictionValue)).ToArray();
+            var addUserRestrictionsTaskRoleInfos = request.RoleInfos.Select(ri => new AddUserPermissionsTaskRoleInfo(ri.RoleCode, ri.RestrictionTypeCode, ri.RestrictionValue)).ToArray();
 
-            await addUserRestrictionsTask.AddAsync(new AddUserRestrictionsTaskRequest(userId, addUserRestrictionsTaskRoleInfos));
+            await addUserPermissionsTask.AddAsync(new AddUserPermissionsTaskRequest(userId, addUserRestrictionsTaskRoleInfos));
             
             // var rolesPermissions = await context.RolePermissions
             //     .Where(rp => roleIds.Contains(rp.RoleId))

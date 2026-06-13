@@ -1,6 +1,6 @@
 namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.AddUserRestrictions.Models;
 
-public sealed class AddUserRestrictionsTaskRoleInfo(string roleCode, string? restrictionTypeCode, string? restrictionValue)
+public sealed class AddUserPermissionsTaskRoleInfo(string roleCode, string? restrictionTypeCode, string? restrictionValue)
 {
     public string RoleCode { get; set; } = roleCode;
 

@@ -2,7 +2,7 @@ using BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.AddUser
 
 namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.AddUserRestrictions;
 
-public interface IAddUserRestrictionsTask
+public interface IAddUserPermissionsTask
 {
-    Task AddAsync(AddUserRestrictionsTaskRequest request);
+    Task AddAsync(AddUserPermissionsTaskRequest request);
 }

@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 
 namespace BackendService.BusinessLogic.Operations.AddPermissionsToUser.Tasks.AddUserRestrictions;
 
-public sealed class AddUserRestrictionsTask(IAuthorizationServiceDbContext context, ILogger<AddUserRestrictionsTask> logger) : IAddUserRestrictionsTask
+public sealed class AddUserPermissionsTask(IAuthorizationServiceDbContext context, ILogger<AddUserPermissionsTask> logger) : IAddUserPermissionsTask
 {
-    public async Task AddAsync(AddUserRestrictionsTaskRequest request)
+    public async Task AddAsync(AddUserPermissionsTaskRequest request)
     {
         try
         {
@@ -56,7 +56,7 @@ public sealed class AddUserRestrictionsTask(IAuthorizationServiceDbContext conte
         }
         catch (Exception)
         {
-            await context.Database.RollbackTransactionAsync();
+            logger.LogInformation("User permission");
             throw;
         }
     }
