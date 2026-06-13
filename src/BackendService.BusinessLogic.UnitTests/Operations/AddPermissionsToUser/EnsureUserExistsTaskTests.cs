@@ -35,11 +35,13 @@ public sealed class EnsureUserExistsTaskTests
         var expectedUser = await _context.User.FirstOrDefaultAsync(users => users.Login == login);
         Assert.IsNull(expectedUser);
 
-        await _ensureUserExistsTask.ExecuteAsync(login);
+        var userId = await _ensureUserExistsTask.ExecuteAsync(login);
 
         expectedUser = await _context.User.FirstOrDefaultAsync(users => users.Login == login);
         
         Assert.IsNotNull(expectedUser);
+        Assert.AreEqual(userId, expectedUser.UserId);
+        Assert.AreEqual(login, expectedUser.Login);
     }
 
     [TestMethod]
@@ -50,14 +52,16 @@ public sealed class EnsureUserExistsTaskTests
         await _context.User.AddAsync(new Users { Login = login });
         await _context.SaveChangesAsync(CancellationToken.None);
         
-        var expectedUser = await _context.User.Where(users => users.Login == login).ToArrayAsync();
-        Assert.AreEqual(1, expectedUser.Length);
+        var expectedUsers = await _context.User.Where(users => users.Login == login).ToArrayAsync();
+        Assert.AreEqual(1, expectedUsers.Length);
 
-        await _ensureUserExistsTask.ExecuteAsync(login);
+        var userId = await _ensureUserExistsTask.ExecuteAsync(login);
 
-        expectedUser = await _context.User.Where(users => users.Login == login).ToArrayAsync();
-        Assert.AreEqual(1, expectedUser.Length);
-        
-        Assert.IsNotNull(expectedUser);
+        expectedUsers = await _context.User.Where(users => users.Login == login).ToArrayAsync();
+        Assert.AreEqual(1, expectedUsers.Length);
+
+        var user = expectedUsers.First();
+        Assert.AreEqual(userId, user.UserId);
+        Assert.AreEqual(login, user.Login);
     }
 }
