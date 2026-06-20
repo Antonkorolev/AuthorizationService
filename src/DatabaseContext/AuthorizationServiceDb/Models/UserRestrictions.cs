@@ -10,7 +10,7 @@ public sealed class UserRestrictions
     
     public int PermissionId { get; set; }
     
-    public int RestrictionTypeId { get; set; }
+    public int? RestrictionTypeId { get; set; }
     
     public string? RestrictionValue { get; set; }
 }
