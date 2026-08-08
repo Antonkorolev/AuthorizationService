@@ -20,20 +20,10 @@ public sealed class AddPermissionsToUserOperation(IAuthorizationServiceDbContext
             var addUserRestrictionsTaskRoleInfos = request.RoleInfos.Select(ri => new AddUserPermissionsTaskRoleInfo(ri.RoleCode, ri.RestrictionTypeCode, ri.RestrictionValue)).ToArray();
 
             await addUserPermissionsTask.AddAsync(new AddUserPermissionsTaskRequest(userId, addUserRestrictionsTaskRoleInfos));
-            
-            // var rolesPermissions = await context.RolePermissions
-            //     .Where(rp => roleIds.Contains(rp.RoleId))
-            //     .Join(context.Permissions, rp => rp.PermissionId, p => p.PermissionId, (rp, p) => new { rp.RoleId, p.PermissionId })
-            //     .ToArrayAsync();
-
-            // foreach (var rolesPermission in rolesPermissions)
-            // {
-            //     await context.UserRestrictions.AddAsync(new UserRestrictions { UserId = user.UserId });
-            // }
-
-            //await context.SaveChangesAsync(CancellationToken.None);
                 
             await context.Database.CommitTransactionAsync();
+            
+            logger.LogInformation("Successfully add permissions");
         }
         catch (Exception)
         {
