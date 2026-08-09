@@ -1,5 +1,6 @@
 using BackendService.BusinessLogic.Operations.AddPermissionsToUser;
 using BackendService.BusinessLogic.Operations.DeletePermissionsFromUser;
+using BackendService.BusinessLogic.Operations.DeletePermissionsFromUser.Models;
 using BackendService.BusinessLogic.Operations.GetPermissions;
 using BackendService.BusinessLogic.Operations.GetPermissions.Models;
 using BackendService.Contracts.Request;
@@ -40,8 +41,8 @@ public sealed class PermissionController(
     }
 
     [HttpPost("DeletePermissionsFromUser")]
-    public async Task DeletePermissionsFromUserAsync(DeletePermissionsFromUserRequest fromUserRequest)
+    public async Task DeletePermissionsFromUserAsync(DeletePermissionsFromUserRequest request)
     {
-        await deletePermissionsFromUserOperation.DeleteAsync(fromUserRequest.Map());
+        await deletePermissionsFromUserOperation.DeleteAsync(new DeletePermissionsOperationRequest(request.Login));
     }
 }

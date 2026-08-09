@@ -23,7 +23,7 @@ public sealed class AddPermissionsToUserOperationTests
 
     public AddPermissionsToUserOperationTests()
     {
-        _context = _context = new AuthorizationServiceDbContext(new DbContextOptionsBuilder<AuthorizationServiceDbContext>()
+        _context = new AuthorizationServiceDbContext(new DbContextOptionsBuilder<AuthorizationServiceDbContext>()
             .UseInMemoryDatabase("AuthorizationServiceDb")
             .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
             .Options);

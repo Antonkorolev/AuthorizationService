@@ -1,8 +1,6 @@
 namespace BackendService.BusinessLogic.Operations.DeletePermissionsFromUser.Models;
 
-public sealed class DeletePermissionsOperationRequest(string login, IEnumerable<RoleInfo> roleInfos)
+public sealed class DeletePermissionsOperationRequest(string login)
 {
     public string Login { get; set; } = login;
-
-    public IEnumerable<RoleInfo> RoleInfos { get; set; } = roleInfos;
 }
