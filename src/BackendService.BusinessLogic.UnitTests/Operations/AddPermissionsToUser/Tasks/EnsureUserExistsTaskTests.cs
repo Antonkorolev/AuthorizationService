@@ -30,7 +30,7 @@ public sealed class EnsureUserExistsTaskTests
     [TestMethod]
     public async Task UserNotExists()
     {
-        const string login = "TestLogin1";
+        const string login = "TestLogin19";
         
         var expectedUser = await _context.User.FirstOrDefaultAsync(users => users.Login == login);
         Assert.IsNull(expectedUser);
@@ -47,7 +47,7 @@ public sealed class EnsureUserExistsTaskTests
     [TestMethod]
     public async Task UserExists()
     {
-        const string login = "TestLogin2";
+        const string login = "TestLogin29";
 
         await _context.User.AddAsync(new Users { Login = login });
         await _context.SaveChangesAsync(CancellationToken.None);
