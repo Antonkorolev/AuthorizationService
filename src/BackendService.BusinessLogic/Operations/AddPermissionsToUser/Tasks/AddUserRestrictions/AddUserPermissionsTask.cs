@@ -10,8 +10,6 @@ public sealed class AddUserPermissionsTask(IAuthorizationServiceDbContext contex
 {
     public async Task AddAsync(AddUserPermissionsTaskRequest request)
     {
-        //RestrictionTypes? restrictionType = null;
-        
         try
         {
             var roleCodes = request.RoleInfos.Select(ri => ri.RoleCode).ToArray();
@@ -31,7 +29,6 @@ public sealed class AddUserPermissionsTask(IAuthorizationServiceDbContext contex
                 if (filteredRolesPermissions.Length == 0)
                     throw new Exception($"Role not found by code = {roleInfo.RoleCode}");
 
-                //if (roleInfo.RestrictionTypeCode != null) 
                 var restrictionType = await context.RestrictionTypes.FirstOrDefaultAsync(rt => rt.RestrictionTypeCode == roleInfo.RestrictionTypeCode);
                 
                 await context.UserRoles.AddAsync(new UserRoles { UserId = request.UserId, RoleId = filteredRolesPermissions.First().RoleId });

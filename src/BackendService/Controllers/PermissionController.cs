@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackendService.Controllers;
 
 [ApiController]
+[Route("[controller]")]
 public sealed class PermissionController(
     IGetPermissionsOperation getPermissionsOperation,
     IAddPermissionsToUserOperation addPermissionsToUserOperation,
@@ -27,20 +28,24 @@ public sealed class PermissionController(
     [HttpGet("GetPermissions")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<GetPermissionsResponse> GetPermissionsAsync(GetPermissionsRequest request)
+    public async Task<GetPermissionsResponse> GetPermissionsAsync(string login)
     {
-        var getPermissionsOperationResponse = await getPermissionsOperation.GetAsync(new GetPermissionsOperationRequest(request.Login));
+        var getPermissionsOperationResponse = await getPermissionsOperation.GetAsync(new GetPermissionsOperationRequest(login));
 
         return getPermissionsOperationResponse.Map();
     }
 
     [HttpPost("AddPermissionsToUser")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task AddPermissionsAsync(AddPermissionsToUserRequest request)
     {
         await addPermissionsToUserOperation.AddAsync(request.Map());
     }
 
     [HttpPost("DeletePermissionsFromUser")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task DeletePermissionsFromUserAsync(DeletePermissionsFromUserRequest request)
     {
         await deletePermissionsFromUserOperation.DeleteAsync(new DeletePermissionsOperationRequest(request.Login));
