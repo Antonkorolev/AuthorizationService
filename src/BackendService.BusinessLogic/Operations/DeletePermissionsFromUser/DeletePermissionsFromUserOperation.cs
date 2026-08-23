@@ -20,6 +20,7 @@ public sealed class DeletePermissionsFromUserOperation(IAuthorizationServiceDbCo
             context.UserRoles.RemoveRange(context.UserRoles.Where(ur => ur.UserId == user.UserId));
             context.UserRestrictions.RemoveRange(context.UserRestrictions.Where(ur => ur.UserId == user.UserId));
 
+            await context.SaveChangesAsync(CancellationToken.None);
             await context.Database.CommitTransactionAsync();
 
             logger.LogInformation("Successfully delete permissions");
