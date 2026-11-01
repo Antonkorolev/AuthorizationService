@@ -12,7 +12,7 @@ namespace BackendService.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public sealed class PermissionController(
+public sealed class PermissionsController(
     IGetPermissionsOperation getPermissionsOperation,
     IAddPermissionsToUserOperation addPermissionsToUserOperation,
     IDeletePermissionsFromUserOperation deletePermissionsFromUserOperation) : ControllerBase
