@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace BackendService.BusinessLogic.Operations.GetPermissions;
 
-public sealed class GetPermissionsOperation(GetPermissionsByLoginTask getPermissionsByLoginTask, ILogger<GetPermissionsOperation> logger) : IGetPermissionsOperation
+public sealed class GetPermissionsOperation(IGetPermissionsByLoginTask getPermissionsByLoginTask, ILogger<GetPermissionsOperation> logger) : IGetPermissionsOperation
 {
     public async Task<GetPermissionsOperationResponse?> GetAsync(GetPermissionsOperationRequest request)
     {
