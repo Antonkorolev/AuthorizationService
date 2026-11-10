@@ -1,6 +1,6 @@
 namespace BackendService.BusinessLogic.Constants;
 
-public static class Permission
+public static class PermissionCode
 {
     public const string Read = "User.CanRead";
     
