@@ -30,10 +30,9 @@ public sealed class GetPermissionsByLoginTask(IAuthorizationServiceDbContext con
                 .Select(rp => new GetPermissionsByLoginTaskRolePermission(rp.Key, rp
                     .GroupBy(p => p.PermissionCode)
                     .Select(pg => new GetPermissionsByLoginTaskPermission(pg.Key, pg
-                        .Where(p => string.IsNullOrEmpty(p.RestrictionTypeCode) && p.RestrictionValue != null)
+                        .Where(p => !string.IsNullOrEmpty(p.RestrictionTypeCode) && p.RestrictionValue != null)
                         .Select(p => new GetPermissionsByLoginTaskRestriction(p.RestrictionTypeCode, p.RestrictionValue))
-                        .FirstOrDefault()
-                    ))
+                        .FirstOrDefault()))
                     .ToArray()
                 )));
         }

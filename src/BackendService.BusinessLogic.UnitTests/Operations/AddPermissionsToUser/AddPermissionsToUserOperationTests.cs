@@ -19,7 +19,7 @@ public sealed class AddPermissionsToUserOperationTests
     private Mock<IAddUserPermissionsTask> _addUserPermissionsTask;
     private Mock<ILogger<AddPermissionsToUserOperation>> _logger;
 
-    private IAddPermissionsToUserOperation _operation = default!;
+    private IAddPermissionsToUserOperation _operation;
 
     public AddPermissionsToUserOperationTests()
     {
